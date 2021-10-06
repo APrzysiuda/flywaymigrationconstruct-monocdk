@@ -1,5 +1,5 @@
 {
-  "name": "flywaymigrationconstruct-monocdk",
+  "name": "flywaymigrationconstruct_monocdk",
   "repository": {
     "type": "git",
     "url": "https://github.com/180517/flywaymigrationconstruct-monocdk.git"
@@ -117,8 +117,8 @@
     "outdir": "dist",
     "targets": {
       "python": {
-        "distName": "flywaymigrationconstruct-monocdk",
-        "module": "flywaymigrationconstruct-monocdk"
+        "distName": "flywaymigrationconstruct_monocdk",
+        "module": "flywaymigrationconstruct_monocdk"
       }
     },
     "tsc": {
