@@ -4,7 +4,7 @@ const project = new AwsCdkConstructLibrary({
   authorAddress: '180517@umons.ac.be',
   cdkVersion: '1.125.0',
   defaultReleaseBranch: 'main',
-  name: 'flywaymigrationconstruct_monocdk',
+  name: 'flywaymigrationconstructmonocdk',
   repositoryUrl: 'https://github.com/180517/flywaymigrationconstruct-monocdk.git',
   cdkAssert: true,
   docgen: true,
@@ -14,8 +14,8 @@ const project = new AwsCdkConstructLibrary({
   keywords: ['monocdk', 'flyway', 'DB'],
   release: true,
   publishToPypi: {
-    distName: 'flywaymigrationconstruct_monocdk',
-    module: 'flywaymigrationconstruct_monocdk',
+    distName: 'flywaymigrationconstructmonocdk',
+    module: 'flywaymigrationconstructmonocdk',
   },
   releaseEveryCommit: true,
 });
