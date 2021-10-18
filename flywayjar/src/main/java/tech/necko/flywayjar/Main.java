@@ -25,22 +25,20 @@ public class Main {
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
     public String handleRequest(Map<String, Object> input, Context context) throws ClientException {
         //parameter
-        System.out.println("entrez dans mon handler");
+        LOGGER.info("Start Lambda handler");
         String bucketName = System.getenv("BUCKET_NAME");
-        String mehdi = "ca marche poas osecounbr";
         String arn = System.getenv("ARN");
         //add string prefix = System.getenv("PREFIX");
 
         //SecretsManager
-        System.out.println(arn);
+        LOGGER.info(arn);
         AWSSecretsManagerClientBuilder secretsManager = AWSSecretsManagerClientBuilder.standard();
         AWSSecretsManager clientManager = secretsManager.build();
         GetSecretValueRequest getSecretValueRequest = new GetSecretValueRequest().withSecretId(arn);
         GetSecretValueResult getSecretValueResult = null;
         try {
-            System.out.println("entrez dans mon try catch");
+            LOGGER.info("Pass in try catch");
             getSecretValueResult = clientManager.getSecretValue(getSecretValueRequest);
-            System.out.println(getSecretValueResult);
         } catch (ResourceNotFoundException e) {
             throw new ClientException("The requested secret " + arn + " was not found");
         } catch (InvalidRequestException e) {
@@ -48,14 +46,13 @@ public class Main {
         } catch (InvalidParameterException e) {
             throw new ClientException("The request had invalid params: " + e.getMessage());
         }
-        System.out.println("Sortie de mon try catch");
+        LOGGER.info("Leave try catch");
 
 
         String secret = getSecretValueResult.getSecretString();
 
         JsonObject jsonSecret = new Gson().fromJson(secret, JsonObject.class);
         String password = jsonSecret.get("password").getAsString();
-        System.out.println(password);
         String username = jsonSecret.get("username").getAsString();
         String host = jsonSecret.get("host").getAsString();
         String port = jsonSecret.get("port").getAsString();
@@ -75,24 +72,23 @@ public class Main {
         LOGGER.debug(url);
         //path for files (always tmp for flyway)
         Path outputPath = Paths.get("/tmp");
-        System.out.println("S3 client initialization");
-        //S3Client
+        LOGGER.info("S3 client initialization");
         S3Client client = new S3Client();
-        //LOGGER.info("Client created");
+        LOGGER.info("Client created");
         List<String> objectList = client.getBucketObjectNames(bucketName); //add prefix
-        //LOGGER.info("Loop start");
+        LOGGER.info("Loop start");
         //save object in tmp
         for (String objectName : objectList) {
             GetObjectRequest getObjectRequest = new GetObjectRequest(bucketName, objectName);
             String path = "/tmp/" + objectName;
             client.s3Client.getObject(getObjectRequest, new File(path));
         }
-        //LOGGER.info("migration initialization");
+        LOGGER.info("migration initialization");
         //configure flyway with
         Flyway flyway = Flyway.configure().dataSource(url, username, password).locations("filesystem:/tmp/").load();
         // Start the migration
-        flyway.migrate();
+        Object summary = flyway.migrate();
 
-        return "Migrate successfull";
+        return summary.toString();
     }
 }
