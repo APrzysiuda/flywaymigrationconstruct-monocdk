@@ -63,7 +63,9 @@
     "@monocdk-experiment/assert": "^1.128.0",
     "monocdk": "^1.128.0"
   },
-  "bundledDependencies": [],
+  "bundledDependencies": [
+    "@monocdk-experiment/assert"
+  ],
   "keywords": [
     "DB",
     "cdk",
