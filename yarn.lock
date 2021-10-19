@@ -643,7 +643,7 @@
   dependencies:
     jsonschema "^1.4.0"
 
-"@monocdk-experiment/assert@*":
+"@monocdk-experiment/assert@^1.128.0":
   version "1.128.0"
   resolved "https://registry.yarnpkg.com/@monocdk-experiment/assert/-/assert-1.128.0.tgz#68edbc13041cfc2b3284122e2dd1610a80f375e2"
   integrity sha512-VFHgXCN9MtcvPxlsdpLtd/J3Ll4cM3ywsusx77TwlyE6ugAaNIp9YOThpRuc+hJzkkQtAVJJuAagacg/lR90oA==
