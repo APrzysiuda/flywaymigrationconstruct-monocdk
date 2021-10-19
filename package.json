@@ -60,7 +60,8 @@
     "constructs": "^3.2.27"
   },
   "dependencies": {
-    "monocdk": "^1.126.0"
+    "@monocdk-experiment/assert": "^1.128.0",
+    "monocdk": "^1.128.0"
   },
   "bundledDependencies": [],
   "keywords": [
