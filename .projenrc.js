@@ -10,7 +10,7 @@ const project = new AwsCdkConstructLibrary({
   docgen: true,
   eslint: true,
   releaseToNpm: true,
-  deps: ['monocdk'],
+  deps: ['monocdk', '@monocdk-experiment/assert'],
   keywords: ['monocdk', 'flyway', 'DB'],
   release: true,
   publishToPypi: {
