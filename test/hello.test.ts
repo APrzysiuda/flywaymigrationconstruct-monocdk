@@ -11,6 +11,6 @@ test('test stack', () => {
     migrationDBSecretManager: secret,
     bucketMigrationSQL: bucket,
   });
-  expect(construct).to(haveResource('AWS::Lambda::Function'));
+  construct.flywayLambdaMigration;
   expect(stack).to(haveResource('AWS::Lambda::Function'));
 });
