@@ -7,10 +7,9 @@ test('test stack', () => {
   const stack = new monocdk.Stack(app, 'Test');
   const bucket = new monocdk.aws_s3.Bucket(stack, 'bucket');
   const secret = new monocdk.aws_secretsmanager.Secret(stack, 'secret');
-  const construct = new FlywayConstruct(stack, 'testConstruct', {
+  new FlywayConstruct(stack, 'testConstruct', {
     migrationDBSecretManager: secret,
     bucketMigrationSQL: bucket,
   });
-  construct.flywayLambdaMigration;
   expect(stack).to(haveResource('AWS::Lambda::Function'));
 });
