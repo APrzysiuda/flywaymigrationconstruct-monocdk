@@ -90,9 +90,17 @@
       "type": "build"
     },
     {
+      "name": "@monocdk-experiment/assert",
+      "type": "bundled"
+    },
+    {
       "name": "constructs",
       "version": "^3.2.27",
       "type": "peer"
+    },
+    {
+      "name": "@monocdk-experiment/assert",
+      "type": "runtime"
     },
     {
       "name": "monocdk",
